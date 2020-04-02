@@ -11,17 +11,14 @@ objects:
       course-session: ${APP}-${COMPONENT}${SUFFIX}
     name: ${APP}-${COMPONENT}${SUFFIX}-caddy
   data:
-    Caddyfle: |
+    Caddyfile: |
       
       0.0.0.0:4000
       file_server
       log stdout
-      errors stdout
-      root /opt/app-root/book-${WORKSHOP_NAME}
+      root * /opt/app-root/book-${WORKSHOP_NAME}
       
-      gzip {
-        ext .js .html .css
-      }
+      encode gzip
       
       templates {
         ext   .md
