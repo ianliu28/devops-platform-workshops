@@ -12,8 +12,8 @@ Clone the repository and create your branch locally
 ``` bash
 git clone {URL to Repository}
 cd devops-platform-workshops-labs
-git branc <>.Env.GITHUB_USERNAME</>-201
-git checkou <>.Env.GITHUB_USERNAME</>-201
+git branch <>.Env.GITHUB_USERNAME</>-201
+git checkout <>.Env.GITHUB_USERNAME</>-201
 ```
 
 Push your local branch to the upstream project
