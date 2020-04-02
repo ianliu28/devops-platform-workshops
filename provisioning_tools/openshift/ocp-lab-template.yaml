@@ -12,6 +12,8 @@ objects:
     name: ${APP}-${COMPONENT}${SUFFIX}-caddy
   data:
     Caddyfle: |
+      
+      0.0.0.0:4000
       file_server
       log stdout
       errors stdout
@@ -230,7 +232,7 @@ objects:
     source:
       contextDir: workshop-labs
       git:
-        ref: master
+        ref: ${GIT_BRANCH}
         uri: 'https://github.com/BCDevOps/devops-platform-workshops.git'
       type: Git
     strategy:
