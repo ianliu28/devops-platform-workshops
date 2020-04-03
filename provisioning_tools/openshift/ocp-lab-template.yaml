@@ -24,7 +24,12 @@ objects:
         # markdown templates have <>...</>
         # gitbooks escapes these into valid html sequences which is why 
         # the between values are html escape codes
-        between "{%"  "%}"
+        between ['&lt;&gt;', '&lt;/&gt;']
+      }
+      
+      header / {
+        # prevent any static html from being cached
+        Cache-Control "public, max-age=0, must-revalidate"
       }
 - apiVersion: v1
   kind: ConfigMap
