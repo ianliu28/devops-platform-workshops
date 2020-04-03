@@ -12,22 +12,19 @@ objects:
     name: ${APP}-${COMPONENT}${SUFFIX}-caddy
   data:
     Caddyfile: |
-      
-      0.0.0.0:4000
-      file_server
-      log stdout
+      :4000
       root * /opt/app-root/book-${WORKSHOP_NAME}
-      
+      file_server 
       encode gzip
       
+      log stdout
+      log stderr
+
       templates {
-        ext   .md
-        between <> </>
-      }
-      
-      header / {
-        # prevent any static html from being cached
-        Cache-Control "public, max-age=0, must-revalidate"
+        # markdown templates have <>...</>
+        # gitbooks escapes these into valid html sequences which is why 
+        # the between values are html escape codes
+        between "{%"  "%}"
       }
 - apiVersion: v1
   kind: ConfigMap
@@ -131,6 +128,8 @@ objects:
       spec:
         containers:
         - env:
+          - name: GITHUB_USERNAME
+            value: ${GITHUB_USERNAME}
           - name: WORKSHOP_NAME
             value: ${WORKSHOP_NAME}
           - name: WORKSHOP_FOLDER
