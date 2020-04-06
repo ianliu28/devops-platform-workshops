@@ -35,7 +35,17 @@ objects:
     book.json: |
       {
         "variables": {
-          "GITHUB_USERNAME": ${GITHUB_USERNAME}
+          "GITHUB_USERNAME": "${GITHUB_USERNAME}"
+        },
+        "title": "OpenShift Workshop Labs",
+        "plugins": ["fancybox"],
+        "links": {
+            "sidebar": {
+                "Download PDF": "/download.pdf"
+            }
+        },
+        "pluginsConfig": {
+            "fancybox": {}
         }
       }
 - apiVersion: v1
@@ -241,7 +251,7 @@ objects:
       configMaps:
       - configMap:
           name: ${APP}-${COMPONENT}${SUFFIX}-gitbook-config
-        destinationDir: .
+        destinationDir: ./docs
       contextDir: workshop-labs
       git:
         ref: ${GIT_BRANCH}

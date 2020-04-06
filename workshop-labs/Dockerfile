@@ -9,6 +9,7 @@ COPY support/ ${APP_ROOT}/support/
 # where caddyfile is mounted
 RUN mkdir ${APP_ROOT}/config
 RUN rm -rf  ${APP_ROOT}/docs/*
+RUN cat docs/book.json
 COPY docs/ ${APP_ROOT}/docs/
 RUN chmod -R u+x ${APP_ROOT}/bin && \
     chgrp -R 0 ${APP_ROOT} && \
