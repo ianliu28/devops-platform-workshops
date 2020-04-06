@@ -19,17 +19,24 @@ objects:
       
       log stdout
       log stderr
-
-      templates {
-        # markdown templates have <>...</>
-        # gitbooks escapes these into valid html sequences which is why 
-        # the between values are html escape codes
-        between ['&lt;&gt;', '&lt;/&gt;']
-      }
       
       header / {
         # prevent any static html from being cached
         Cache-Control "public, max-age=0, must-revalidate"
+      }
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    labels:
+      app: ${APP}
+      course-session: ${APP}-${COMPONENT}${SUFFIX}
+    name: ${APP}-${COMPONENT}${SUFFIX}-gitbook-config
+  data:
+    book.json: |
+      {
+        "variables": {
+          "GITHUB_USERNAME": ${GITHUB_USERNAME}
+        }
       }
 - apiVersion: v1
   kind: ConfigMap
@@ -231,6 +238,9 @@ objects:
     resources: {}
     runPolicy: Serial
     source:
+      configMaps:
+        - configMap: ${APP}-${COMPONENT}${SUFFIX}-gitbook-config
+          destinationDir: /opt/app-root
       contextDir: workshop-labs
       git:
         ref: ${GIT_BRANCH}
