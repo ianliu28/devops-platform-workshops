@@ -12,7 +12,7 @@ RUN rm -rf  ${APP_ROOT}/docs/*
 
 COPY docs/ ${APP_ROOT}/docs/
 RUN ls -l docs
-RUN cat ${APP_ROOT}/docs/build.json
+RUN cat ${APP_ROOT}/docs/book.json
 
 RUN chmod -R u+x ${APP_ROOT}/bin && \
     chgrp -R 0 ${APP_ROOT} && \
