@@ -239,8 +239,9 @@ objects:
     runPolicy: Serial
     source:
       configMaps:
-        - configMap: ${APP}-${COMPONENT}${SUFFIX}-gitbook-config
-          destinationDir: /opt/app-root
+      - configMap:
+          name: ${APP}-${COMPONENT}${SUFFIX}-gitbook-config
+        destinationDir: .
       contextDir: workshop-labs
       git:
         ref: ${GIT_BRANCH}
